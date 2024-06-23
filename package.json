@@ -1,0 +1,32 @@
+{
+  "name": "next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "predev": "rimraf .next",
+    "prebuild": "rimraf .next"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.24.7",
+    "@stylexjs/stylex": "^0.6.1",
+    "next": "^14.2.4",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@stylexjs/babel-plugin": "^0.6.1",
+    "@stylexjs/eslint-plugin": "^0.6.1",
+    "@stylexjs/nextjs-plugin": "^0.6.1",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
+    "rimraf": "^5.0.7",
+    "typescript": "^5"
+  }
+}
