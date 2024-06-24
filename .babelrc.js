@@ -2,6 +2,7 @@ module.exports = {
   presets: ["next/babel"],
   plugins: [
     [
+      "babel-plugin-react-compiler",
       "@stylexjs/babel-plugin",
       {
         dev: process.env.NODE_ENV === "development",
