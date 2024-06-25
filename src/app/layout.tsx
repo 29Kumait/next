@@ -19,9 +19,9 @@
 // };
 //
 // export default RootLayout;
+
 import React from "react";
 import "./globals.css";
-
 import { globalTokens as K } from "./globalTokens.stylex";
 import * as stylex from "@stylexjs/stylex";
 
