@@ -22,6 +22,7 @@
 
 import React from "react";
 import "./globals.css";
+
 import { globalTokens as K } from "./globalTokens.stylex";
 import * as stylex from "@stylexjs/stylex";
 
@@ -35,21 +36,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const fgColor = `rgba(${K.foregroundR}, ${K.foregroundG}, ${K.foregroundB}, 1)`;
-
   return (
     <html {...stylex.props(styles.html, styles.reset)} lang="en">
-      <body
-        {...stylex.props(styles.reset, styles.body)}
-        style={{ color: fgColor }}
-      >
-        {children}
-      </body>
+      <body {...stylex.props(styles.reset, styles.body)}>{children}</body>
     </html>
   );
 }
 
 const DARK = "@media (prefers-color-scheme: dark)";
+const fgColor = `rgba(${K.foregroundR}, ${K.foregroundG}, ${K.foregroundB}, 1)`;
 
 const styles = stylex.create({
   html: {
@@ -61,6 +56,7 @@ const styles = stylex.create({
     padding: 0,
   },
   body: {
+    color: fgColor,
     backgroundImage: {
       default: "linear-gradient(to bottom, rgb(214, 219, 220), white)",
       [DARK]: "linear-gradient(to bottom, rgb(20, 22, 27), black)",
