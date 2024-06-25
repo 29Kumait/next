@@ -38,5 +38,6 @@ next-env.d.ts
 .env
 .idx
 .vscode
+.idea
 
 
