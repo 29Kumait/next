@@ -84,4 +84,11 @@ const cardStyles = stylex.create({
     maxWidth: "30ch",
     textWrap: "balance",
   },
+  toggleButton: {
+    backgroundColor: "transparent",
+    borderStyle: "none",
+    cursor: "pointer",
+    fontSize: text.sm,
+    marginRight: spacing.sm,
+  },
 });
