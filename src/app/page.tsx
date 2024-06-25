@@ -1,95 +1,174 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import * as stylex from "@stylexjs/stylex";
+import Card from "./Card";
+import { globalTokens as K, spacing, text } from "./globalTokens.stylex";
+
+const HOMEPAGE = "http://localhost:3000";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
+    <main {...stylex.props(pageStyles.main)}>
+      <div {...stylex.props(pageStyles.description)}>
+        <p {...stylex.props(pageStyles.descP)}>
+          Next &nbsp;
+          <code {...stylex.props(pageStyles.code)}>CODE</code>
         </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+      </div>
+      <div {...stylex.props(pageStyles.hero)}>
+        <h1 {...stylex.props(pageStyles.h1)}>
+          <span {...stylex.props(pageStyles.emoji)}> 🦔</span>️ &nbsp; ⓣ🅈ⓟⒺ
+        </h1>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+      <div {...stylex.props(pageStyles.grid)}>
+        <Card
+          href={`${HOMEPAGE}/a/route/`}
+          title="Title"
+          body="a BODY box, TEXT ...etc."
         />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <Card
+          href={`${HOMEPAGE}/a/route/`}
+          title="Title"
+          body="a BODY box, TEXT ...etc."
+        />
+        <Card
+          href={`${HOMEPAGE}/a/route/`}
+          title="Title"
+          body="a BODY box, TEXT ...etc."
+        />
+        <Card
+          href="https://github.com/nmn/nextjs-app-dir-stylex"
+          title="Title"
+          body="a BODY box, TEXT ...etc."
+        />
       </div>
     </main>
   );
 }
+
+const MEDIA_MOBILE: "@media (max-width: 700px)" = "@media (max-width: 700px)";
+const MEDIA_TABLET: "@media (min-width: 701px) and (max-width: 1120px)" =
+  "@media (min-width: 701px) and (max-width: 1120px)";
+
+const bgImage = `linear-gradient(to bottom, ${K.bgStartRGB}, ${K.calloutRGB50})`;
+const xBorderColor = `rgba(${K.calloutBorderR}, ${K.calloutBorderG}, ${K.calloutBorderB}, 0.3)`;
+const xBorderBottomColor = `rgba(${K.calloutBorderR}, ${K.calloutBorderG}, ${K.calloutBorderB}, 0.25)`;
+
+const pageStyles = stylex.create({
+  main: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    minHeight: "100vh",
+    paddingTop: spacing.xxl,
+    paddingBottom: {
+      default: spacing.xxl,
+      [MEDIA_MOBILE]: spacing.md,
+    },
+  },
+  hero: {
+    flexGrow: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    gap: spacing.xl,
+  },
+  h1: {
+    fontSize: text.h1,
+    lineHeight: 1,
+    fontFamily: K.fontSans,
+    fontWeight: 400,
+    textAlign: "center",
+    display: "flex",
+    gap: spacing.md,
+    whiteSpace: "nowrap",
+    flexDirection: {
+      default: "row",
+      [MEDIA_MOBILE]: "column",
+    },
+  },
+  emoji: {
+    position: "relative",
+    fontFamily: "sans-serif",
+    top: {
+      default: 0,
+      [MEDIA_MOBILE]: spacing.xxxs,
+    },
+  },
+  description: {
+    display: "inherit",
+    justifyContent: "inherit",
+    alignItems: "inherit",
+    fontSize: text.sm,
+    maxWidth: K.maxWidth,
+    width: "100%",
+    zIndex: 2,
+    fontFamily: K.fontMono,
+  },
+  descLink: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: spacing.xxs,
+    padding: { [MEDIA_MOBILE]: spacing.sm },
+  },
+  descP: {
+    display: { [MEDIA_MOBILE]: "flex" },
+    position: {
+      default: "relative",
+      [MEDIA_MOBILE]: "fixed",
+    },
+    justifyContent: { [MEDIA_MOBILE]: "center" },
+    alignItems: { [MEDIA_MOBILE]: "center" },
+    width: { [MEDIA_MOBILE]: "100%" },
+    margin: 0,
+    paddingInline: spacing.sm,
+    paddingTop: {
+      default: spacing.sm,
+      [MEDIA_MOBILE]: spacing.lg,
+    },
+    paddingBottom: {
+      default: spacing.sm,
+      [MEDIA_MOBILE]: spacing.md,
+    },
+    backgroundColor: K.calloutRGB50,
+    backgroundImage: {
+      default: null,
+      [MEDIA_MOBILE]: bgImage,
+    },
+    borderWidth: {
+      default: "1px",
+      [MEDIA_MOBILE]: "0",
+    },
+    borderStyle: "solid",
+    borderColor: xBorderColor,
+    borderBottomColor: {
+      default: null,
+      [MEDIA_MOBILE]: xBorderBottomColor,
+    },
+    borderRadius: {
+      default: spacing.xs,
+      [MEDIA_MOBILE]: 0,
+    },
+    inset: { [MEDIA_MOBILE]: "0 0 auto" },
+  },
+  code: {
+    fontWeight: 700,
+    fontFamily: K.fontMono,
+  },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: {
+      default: "repeat(4, minmax(25%, auto))",
+      [MEDIA_MOBILE]: "1fr",
+      [MEDIA_TABLET]: "repeat(2, 50%)",
+    },
+    width: K.maxWidth,
+    maxWidth: {
+      default: "100%",
+      [MEDIA_MOBILE]: 320,
+    },
+    textAlign: { [MEDIA_MOBILE]: "center" },
+  },
+});
