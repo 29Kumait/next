@@ -1,4 +1,6 @@
+"use client";
 import * as stylex from "@stylexjs/stylex";
+
 import Card from "./Card";
 import { globalTokens as K, spacing, text } from "./globalTokens.stylex";
 
@@ -9,7 +11,6 @@ export default function Home() {
     <main {...stylex.props(pageStyles.main)}>
       <div {...stylex.props(pageStyles.description)}>
         <p {...stylex.props(pageStyles.descP)}>
-          Next &nbsp;
           <code {...stylex.props(pageStyles.code)}>CODE</code>
         </p>
       </div>
@@ -36,7 +37,7 @@ export default function Home() {
           body="a BODY box, TEXT ...etc."
         />
         <Card
-          href="https://github.com/nmn/nextjs-app-dir-stylex"
+          href={`${HOMEPAGE}/a/route/`}
           title="Title"
           body="a BODY box, TEXT ...etc."
         />
@@ -45,9 +46,8 @@ export default function Home() {
   );
 }
 
-const MEDIA_MOBILE: "@media (max-width: 700px)" = "@media (max-width: 700px)";
-const MEDIA_TABLET: "@media (min-width: 701px) and (max-width: 1120px)" =
-  "@media (min-width: 701px) and (max-width: 1120px)";
+const MEDIA_MOBILE = "@media (max-width: 700px)";
+const MEDIA_TABLET = "@media (min-width: 701px) and (max-width: 1120px)";
 
 const bgImage = `linear-gradient(to bottom, ${K.bgStartRGB}, ${K.calloutRGB50})`;
 const xBorderColor = `rgba(${K.calloutBorderR}, ${K.calloutBorderG}, ${K.calloutBorderB}, 0.3)`;
@@ -170,5 +170,12 @@ const pageStyles = stylex.create({
       [MEDIA_MOBILE]: 320,
     },
     textAlign: { [MEDIA_MOBILE]: "center" },
+  },
+  toggleButton: {
+    backgroundColor: "transparent",
+    borderStyle: "none",
+    cursor: "pointer",
+    fontSize: text.sm,
+    marginRight: spacing.sm,
   },
 });
