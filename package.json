@@ -15,8 +15,10 @@
     "@stylexjs/stylex": "^0.6.1",
     "babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",
     "next": "^15.0.0-canary.42",
+    "prop-types": "^15.8.1",
     "react": "^19.0.0-rc.0",
-    "react-dom": "^19.0.0-rc.0"
+    "react-dom": "^19.0.0-rc.0",
+    "react-router-dom": "^6.24.0"
   },
   "devDependencies": {
     "@stylexjs/babel-plugin": "^0.6.1",
