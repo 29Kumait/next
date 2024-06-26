@@ -9,7 +9,7 @@ import Card from "./Card";
 import { globalTokens as K, spacing, text } from "./globalTokens.stylex";
 
 import StickyScroll from "../Components/Sticky/StickyScroll";
-import { content } from "../Components/Content/content";
+import { content } from "@/Components/Content/content";
 
 const darkModeStyles = stylex.create({
   darkRoot: {
