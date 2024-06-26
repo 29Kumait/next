@@ -12,6 +12,7 @@ const stylesStickyContent = stylex.create({
     transform: "translateY(-31%)",
     overflow: "hidden",
     background: "rgba(251, 251, 253, 0.91)",
+    // eslint-disable-next-line @stylexjs/valid-styles
     "@media (min-width: 768px)": {
       display: "block",
     },
