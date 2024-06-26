@@ -13,16 +13,13 @@ const darkModeStyles = stylex.create({
     color: "#FFFFFFCF",
     backgroundColor: "#050F1AE8",
   },
-  lightRoot: {},
 });
 const HOMEPAGE = "http://localhost:3000";
 
 const Home: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
 
-  const currentRootStyle = darkMode
-    ? darkModeStyles.darkRoot
-    : darkModeStyles.lightRoot;
+  const currentRootStyle = darkMode && darkModeStyles.darkRoot;
   return (
     <main {...stylex.props(pageStyles.main, currentRootStyle)}>
       <div {...stylex.props(pageStyles.description)}>
@@ -186,13 +183,6 @@ const pageStyles = stylex.create({
       [MEDIA_MOBILE]: 320,
     },
     textAlign: { [MEDIA_MOBILE]: "center" },
-  },
-  toggleButton: {
-    backgroundColor: "transparent",
-    borderStyle: "none",
-    cursor: "pointer",
-    fontSize: text.sm,
-    marginRight: spacing.sm,
   },
 });
 
