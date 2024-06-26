@@ -12,9 +12,7 @@ const DarkModeToggle: React.FC<DarkModeToggleProps> = ({
 }) => {
   return (
     <button
-      {...stylex.props(
-        darkMode ? darkModeStyles.darkRoot : darkModeStyles.lightRoot,
-      )}
+      {...stylex.props(darkMode && darkModeStyles.darkRoot)}
       onClick={() => setDarkMode(!darkMode)}
     >
       {darkMode ? "dark" : "light"}
@@ -26,10 +24,6 @@ const darkModeStyles = stylex.create({
   darkRoot: {
     color: "#FFFFFFCF",
     backgroundColor: "#050F1AE8",
-  },
-  lightRoot: {
-    color: "inherit",
-    backgroundColor: "inherit",
   },
 });
 
