@@ -1,16 +1,33 @@
 "use client";
+
+import React, { useState } from "react";
+
 import * as stylex from "@stylexjs/stylex";
+import DarkModeToggle from "../Component/DarkModeToggle";
 
 import Card from "./Card";
 import { globalTokens as K, spacing, text } from "./globalTokens.stylex";
 
+const darkModeStyles = stylex.create({
+  darkRoot: {
+    color: "#FFFFFFCF",
+    backgroundColor: "#050F1AE8",
+  },
+  lightRoot: {},
+});
 const HOMEPAGE = "http://localhost:3000";
 
-export default function Home() {
+const Home: React.FC = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const currentRootStyle = darkMode
+    ? darkModeStyles.darkRoot
+    : darkModeStyles.lightRoot;
   return (
-    <main {...stylex.props(pageStyles.main)}>
+    <main {...stylex.props(pageStyles.main, currentRootStyle)}>
       <div {...stylex.props(pageStyles.description)}>
         <p {...stylex.props(pageStyles.descP)}>
+          <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
           <code {...stylex.props(pageStyles.code)}>CODE</code>
         </p>
       </div>
@@ -19,7 +36,6 @@ export default function Home() {
           <span {...stylex.props(pageStyles.emoji)}> 🦔</span>️ &nbsp; ⓣ🅈ⓟⒺ
         </h1>
       </div>
-
       <div {...stylex.props(pageStyles.grid)}>
         <Card
           href={`${HOMEPAGE}/a/route/`}
@@ -44,7 +60,7 @@ export default function Home() {
       </div>
     </main>
   );
-}
+};
 
 const MEDIA_MOBILE = "@media (max-width: 700px)";
 const MEDIA_TABLET = "@media (min-width: 701px) and (max-width: 1120px)";
@@ -179,3 +195,5 @@ const pageStyles = stylex.create({
     marginRight: spacing.sm,
   },
 });
+
+export default Home;
