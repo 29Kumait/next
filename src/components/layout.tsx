@@ -1,7 +1,7 @@
 import React from "react";
-import "./globals.css";
+import "../../styles/globals.css";
 
-import { globalTokens as K } from "./globalTokens.stylex";
+import { globalTokens as K } from "../../styles/globalTokens.stylex";
 import * as stylex from "@stylexjs/stylex";
 
 export const metadata = {

@@ -1,15 +1,12 @@
-"use client";
-
 import React, { useState } from "react";
-
 import * as stylex from "@stylexjs/stylex";
-import DarkModeToggle from "@/Components/DarkModeToggle";
-
-import Card from "./Card";
-import { globalTokens as K, spacing, text } from "./globalTokens.stylex";
-
-import StickyScroll from "../Components/Sticky/StickyScroll";
-import { content } from "../Components/Content/content";
+import DarkModeToggle from "@/components/DarkModeToggle";
+import Card from "@/components/Card";
+import {
+  globalTokens as K,
+  spacing,
+  text,
+} from "../styles/globalTokens.stylex";
 
 const darkModeStyles = stylex.create({
   darkRoot: {
@@ -57,11 +54,6 @@ const Home: React.FC = () => {
           title="Title"
           body="a BODY box, TEXT ...etc."
         />
-        <div />
-
-        <StickyScroll content={content} />
-
-        <div />
       </div>
     </main>
   );
