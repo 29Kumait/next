@@ -1,12 +1,12 @@
-"use client";
-
 import React, { useState } from "react";
-
 import * as stylex from "@stylexjs/stylex";
-import DarkModeToggle from "@/app/DarkModeToggle";
-
-import Card from "./Card";
-import { globalTokens as K, spacing, text } from "./globalTokens.stylex";
+import DarkModeToggle from "@/components/DarkModeToggle";
+import Card from "@/components/Card";
+import {
+  globalTokens as K,
+  spacing,
+  text,
+} from "../styles/globalTokens.stylex";
 
 const darkModeStyles = stylex.create({
   darkRoot: {

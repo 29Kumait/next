@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
-import { globalTokens, spacing, text } from "./globalTokens.stylex";
-import { tokens } from "./CardTokens.stylex";
+import { globalTokens, spacing, text } from "../../styles/globalTokens.stylex";
+import { tokens } from "../../styles/CardTokens.stylex";
 
 type Props = Readonly<{
   href: string;
