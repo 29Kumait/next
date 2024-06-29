@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import YouTubeVideo from "@/components/YouTubeVideo";
+import YouTubeVideo from "../components/YouTubeVideo";
 
 import { ParsedUrlQuery } from "querystring";
 

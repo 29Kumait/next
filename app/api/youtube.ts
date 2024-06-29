@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import {
   fetchYoutubeVideoDetails,
   YoutubeApiCustomError,
-} from "@/lib/youtubeApi";
+} from "../lib/youtubeApi";
 
 const youtubeHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { videoId } = req.query;
