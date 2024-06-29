@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface YoutubeVideoDetails {
   kind: string;
@@ -41,7 +42,7 @@ const YouTubeVideo = async ({ videoId }: { videoId: string }) => {
     <div>
       <h1>{video.title}</h1>
       <p>{video.description}</p>
-      <img src={video.thumbnails.high.url} alt={video.title} />
+      <Image src={video.thumbnails.high.url} alt={video.title} />
       <p>Published on: {new Date(video.publishedAt).toLocaleDateString()}</p>
     </div>
   );

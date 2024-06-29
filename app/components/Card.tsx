@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
-import { globalTokens, spacing, text } from "../../styles/globalTokens.stylex";
-import { tokens } from "../../styles/CardTokens.stylex";
+import { globalTokens, spacing, text } from "../globalTokens.stylex";
+import { tokens } from "../CardTokens.stylex";
 
 type Props = Readonly<{
   href: string;
@@ -83,12 +83,5 @@ const cardStyles = stylex.create({
     lineHeight: 1.5,
     maxWidth: "30ch",
     textWrap: "balance",
-  },
-  toggleButton: {
-    backgroundColor: "transparent",
-    borderStyle: "none",
-    cursor: "pointer",
-    fontSize: text.sm,
-    marginRight: spacing.sm,
   },
 });

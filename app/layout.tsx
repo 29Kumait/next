@@ -1,8 +1,9 @@
 import React from "react";
-import "../../styles/globals.css";
-
-import { globalTokens as K } from "../../styles/globalTokens.stylex";
 import * as stylex from "@stylexjs/stylex";
+
+import "./globals.css";
+
+import { globalTokens as K } from "./globalTokens.stylex";
 
 export const metadata = {
   title: "Create Next App",
