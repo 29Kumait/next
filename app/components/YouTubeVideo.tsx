@@ -1,5 +1,4 @@
-import React from "react";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
 
 interface YoutubeVideoDetails {
   kind: string;
@@ -24,15 +23,36 @@ const fetchVideoDetails = async (
 ): Promise<YoutubeVideoDetails> => {
   const res = await fetch(`/api/youtube?videoId=${videoId}`);
   if (!res.ok) {
-    throw new Error("Failed");
+    throw new Error(`Failed to fetch video details, status: ${res.status}`);
   }
   return await res.json();
 };
 
-const YouTubeVideo = async ({ videoId }: { videoId: string }) => {
-  const videoDetails = await fetchVideoDetails(videoId);
+const YouTubeVideo: React.FC<{ videoId: string }> = ({ videoId }) => {
+  const [videoDetails, setVideoDetails] = useState<YoutubeVideoDetails | null>(
+    null,
+  );
+  const [error, setError] = useState<string | null>(null);
 
-  if (!videoDetails.items || videoDetails.items.length === 0) {
+  useEffect(() => {
+    const loadVideoDetails = async () => {
+      try {
+        const details = await fetchVideoDetails(videoId);
+        setVideoDetails(details);
+      } catch (error) {
+        console.error("Failed to load video details:", error);
+        setError("Failed to load video details");
+      }
+    };
+
+    loadVideoDetails();
+  }, [videoId]);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!videoDetails || videoDetails.items.length === 0) {
     return <div>Video not found</div>;
   }
 
@@ -42,7 +62,12 @@ const YouTubeVideo = async ({ videoId }: { videoId: string }) => {
     <div>
       <h1>{video.title}</h1>
       <p>{video.description}</p>
-      <Image src={video.thumbnails.high.url} alt={video.title} />
+      <img
+        src={video.thumbnails.high.url}
+        alt={video.title}
+        width={video.thumbnails.high.width}
+        height={video.thumbnails.high.height}
+      />
       <p>Published on: {new Date(video.publishedAt).toLocaleDateString()}</p>
     </div>
   );

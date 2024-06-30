@@ -1,12 +1,11 @@
 "use client";
 import React, { useState } from "react";
-
 import * as stylex from "@stylexjs/stylex";
-
 import { spacing } from "./globalTokens.stylex";
 import Hero from "./components/Hero";
 import Grid from "./components/Grid";
 import Description from "./components/Description";
+import YouTubeVideo from "./components/YouTubeVideo";
 
 const darkModeStyles = stylex.create({
   darkRoot: {
@@ -18,14 +17,16 @@ const darkModeStyles = stylex.create({
 
 const Home: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
-
   const currentRootStyle = darkMode
     ? darkModeStyles.darkRoot
     : darkModeStyles.lightRoot;
+
   return (
     <main {...stylex.props(pageStyles.main, currentRootStyle)}>
-      <Description darkMode={darkMode} setDarkMode={setDarkMode} /> <Hero />
+      <Description darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Hero />
       <Grid />
+      <YouTubeVideo videoId="aqz-KE-bpKQ" />
     </main>
   );
 };
