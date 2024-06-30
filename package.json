@@ -13,8 +13,7 @@
   "dependencies": {
     "@babel/runtime": "^7.24.7",
     "@stylexjs/stylex": "^0.6.1",
-    "babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",
-    "next": "^15.0.0-canary.42",
+    "next": "^15.0.0-canary.49",
     "node-fetch": "^3.3.2",
     "prop-types": "^15.8.1",
     "react": "^19.0.0-rc.0",
@@ -28,6 +27,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "babel-plugin-react-compiler": "^0.0.0-experimental-696af53-20240625",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "eslint-plugin-react-compiler": "^0.0.0-experimental-51a85ea-20240601",
