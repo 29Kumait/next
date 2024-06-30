@@ -25,8 +25,8 @@ const Home: React.FC = () => {
     <main {...stylex.props(pageStyles.main, currentRootStyle)}>
       <Description darkMode={darkMode} setDarkMode={setDarkMode} />
       <Hero />
+      <YouTubeVideo videoId="aCghEsTPhdA" />
       <Grid />
-      <YouTubeVideo videoId="aqz-KE-bpKQ" />
     </main>
   );
 };
@@ -45,6 +45,7 @@ const pageStyles = stylex.create({
       default: spacing.xxl,
       [MEDIA_MOBILE]: spacing.md,
     },
+    gap: spacing.xl,
   },
 });
 

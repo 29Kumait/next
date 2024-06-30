@@ -9,7 +9,7 @@ const bgImage = `linear-gradient(to bottom, ${K.bgStartRGB}, ${K.calloutRGB50})`
 const xBorderColor = `rgba(${K.calloutBorderR}, ${K.calloutBorderG}, ${K.calloutBorderB}, 0.3)`;
 const xBorderBottomColor = `rgba(${K.calloutBorderR}, ${K.calloutBorderG}, ${K.calloutBorderB}, 0.25)`;
 
-const descriptionStyles = stylex.create({
+export const descriptionStyles = stylex.create({
   description: {
     display: "inherit",
     justifyContent: "inherit",
@@ -17,7 +17,7 @@ const descriptionStyles = stylex.create({
     fontSize: text.sm,
     maxWidth: K.maxWidth,
     width: "100%",
-    zIndex: 2,
+    zIndex: 3,
     fontFamily: K.fontMono,
   },
   descLink: {
