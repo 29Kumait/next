@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
   return (
     <div {...stylex.props(heroStyles.hero)}>
       <h1 {...stylex.props(heroStyles.h1)}>
-        <span {...stylex.props(heroStyles.emoji)}> 🦔</span>️ &nbsp; ⓣ🅈ⓟⒺ
+        <span {...stylex.props(heroStyles.emoji)}> ️</span>️🌰 &nbsp; ⓣ🅈ⓟⒺ
       </h1>
     </div>
   );

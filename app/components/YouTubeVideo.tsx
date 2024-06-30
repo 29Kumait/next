@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import * as stylex from "@stylexjs/stylex";
+import { descriptionStyles } from "./Description";
 
 interface YoutubeVideoDetails {
   kind: string;
@@ -20,12 +22,19 @@ interface YoutubeVideoDetails {
 
 const fetchVideoDetails = async (
   videoId: string,
-): Promise<YoutubeVideoDetails> => {
+): Promise<YoutubeVideoDetails | null> => {
   const res = await fetch(`/api/youtube?videoId=${videoId}`);
   if (!res.ok) {
-    throw new Error(`Failed to fetch video details, status: ${res.status}`);
+    return null;
   }
   return await res.json();
+};
+
+const truncateText = (text: string, maxLength: number) => {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return text.substring(0, maxLength) + "...";
 };
 
 const YouTubeVideo: React.FC<{ videoId: string }> = ({ videoId }) => {
@@ -38,14 +47,19 @@ const YouTubeVideo: React.FC<{ videoId: string }> = ({ videoId }) => {
     const loadVideoDetails = async () => {
       try {
         const details = await fetchVideoDetails(videoId);
-        setVideoDetails(details);
+        if (details === null) {
+          setError(`Failed to fetch video details`);
+        } else {
+          setVideoDetails(details);
+        }
       } catch (error) {
-        console.error("Failed to load video details:", error);
-        setError("Failed to load video details");
+        setError("An error occurred while loading video details:" + error);
       }
     };
 
-    loadVideoDetails();
+    loadVideoDetails().catch((error) => {
+      setError("An error occurred while loading video details:" + error);
+    });
   }, [videoId]);
 
   if (error) {
@@ -57,20 +71,62 @@ const YouTubeVideo: React.FC<{ videoId: string }> = ({ videoId }) => {
   }
 
   const video = videoDetails.items[0].snippet;
+  const truncatedDescription = truncateText(video.description, 200);
 
   return (
-    <div>
-      <h1>{video.title}</h1>
-      <p>{video.description}</p>
-      <img
-        src={video.thumbnails.high.url}
-        alt={video.title}
-        width={video.thumbnails.high.width}
-        height={video.thumbnails.high.height}
-      />
-      <p>Published on: {new Date(video.publishedAt).toLocaleDateString()}</p>
+    <div {...stylex.props(videoStyles.card)}>
+      <h2 {...stylex.props(videoStyles.title)}>{video.title}</h2>
+      <p
+        {...stylex.props(
+          descriptionStyles.description,
+          descriptionStyles.descP,
+        )}
+      >
+        {truncatedDescription}
+      </p>
+      <iframe
+        {...stylex.props(videoStyles.video)}
+        width="560"
+        height="315"
+        src={`https://www.youtube.com/embed/${videoId}`}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        title={video.title}
+      ></iframe>
+      <p {...stylex.props(videoStyles.published)}>
+        Published on: {new Date(video.publishedAt).toLocaleDateString()}
+      </p>
     </div>
   );
 };
+
+const videoStyles = stylex.create({
+  card: {
+    background: "rgba(255, 255, 255, 0.1)",
+    borderRadius: "15px",
+    border: "1px solid rgba(255, 255, 255, 0.2)",
+    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+    backdropFilter: "blur(10px)",
+    WebkitBackdropFilter: "blur(10px)",
+    padding: "20px",
+    maxWidth: "640px",
+    margin: "20px auto",
+    color: "#fff",
+    textAlign: "center",
+  },
+  title: {
+    fontSize: "1.5em",
+    marginBottom: "10px",
+  },
+  video: {
+    marginBottom: "20px",
+    zIndex: 2,
+  },
+  published: {
+    fontSize: "0.9em",
+    color: "#ccc",
+  },
+});
 
 export default YouTubeVideo;
