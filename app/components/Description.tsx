@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import * as stylex from "@stylexjs/stylex";
 import { globalTokens as K, spacing, text } from "../globalTokens.stylex";
 import DarkModeToggle from "./DarkModeToggle";
+import DropdownMenu from "./DropdownMenu";
 
 const MEDIA_MOBILE = "@media (max-width: 700px)";
 
@@ -77,12 +78,19 @@ const Description: React.FC<{
   darkMode: boolean;
   setDarkMode: (value: boolean) => void;
 }> = ({ darkMode, setDarkMode }) => {
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
   return (
-    <div {...stylex.props(descriptionStyles.description)}>
+    <div
+      {...stylex.props(descriptionStyles.description)}
+      onMouseEnter={() => setIsDropdownVisible(true)}
+      onMouseLeave={() => setIsDropdownVisible(false)}
+    >
       <p {...stylex.props(descriptionStyles.descP)}>
         <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
         <code {...stylex.props(descriptionStyles.code)}>CODE</code>
       </p>
+      <DropdownMenu isVisible={isDropdownVisible} />
     </div>
   );
 };
