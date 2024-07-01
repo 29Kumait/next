@@ -73,20 +73,31 @@ export const descriptionStyles = stylex.create({
     fontFamily: K.fontMono,
   },
 });
-
 const Description: React.FC<{
   darkMode: boolean;
   setDarkMode: (value: boolean) => void;
 }> = ({ darkMode, setDarkMode }) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  let timer: NodeJS.Timeout;
+
+  const handleMouseEnter = () => {
+    clearTimeout(timer);
+    setIsDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    timer = setTimeout(() => {
+      setIsDropdownVisible(false);
+    }, 1000);
+  };
 
   return (
-    <div
-      {...stylex.props(descriptionStyles.description)}
-      onMouseEnter={() => setIsDropdownVisible(true)}
-      onMouseLeave={() => setIsDropdownVisible(false)}
-    >
-      <p {...stylex.props(descriptionStyles.descP)}>
+    <div {...stylex.props(descriptionStyles.description)}>
+      <p
+        {...stylex.props(descriptionStyles.descP)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
         <code {...stylex.props(descriptionStyles.code)}>CODE</code>
       </p>

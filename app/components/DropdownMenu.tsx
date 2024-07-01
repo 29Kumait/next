@@ -9,7 +9,7 @@ const dropdownStyles = stylex.create({
     fontSize: text.sm,
     maxWidth: globalTokens.maxWidth,
     width: "100%",
-    zIndex: 4,
+    zIndex: 10,
     fontFamily: globalTokens.fontMono,
     position: "relative",
   },
@@ -19,6 +19,7 @@ const dropdownStyles = stylex.create({
   a: {
     color: "inherit",
     textDecoration: "none",
+    position: "relative",
   },
 });
 
